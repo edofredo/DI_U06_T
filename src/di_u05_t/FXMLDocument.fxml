@@ -8,18 +8,18 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" 
+<VBox fx:id="panel" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" 
       prefWidth="400.0" xmlns="http://javafx.com/javafx/8" 
       xmlns:fx="http://javafx.com/fxml/1" 
       fx:controller="di_u05_t.FXMLDocumentController">
    <children>
-      <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" 
-             minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" 
-             prefWidth="400.0" text="Generador de informes" />
+      <Label fx:id="titulo" alignment="CENTER" maxHeight="-Infinity" 
+             maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" 
+             prefHeight="100.0" prefWidth="425.0" text="Generador de informes" />
       <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" 
               minWidth="-Infinity" mnemonicParsing="false" 
-              onAction="#mostrarListado" prefHeight="50.0" prefWidth="350.0" 
-              text="Matriculados en DI">
+              onAction="#mostrarListado" prefHeight="50.0" 
+              prefWidth="350.0" text="Matriculados en DI">
          <VBox.margin>
             <Insets left="25.0" top="25.0" />
          </VBox.margin>

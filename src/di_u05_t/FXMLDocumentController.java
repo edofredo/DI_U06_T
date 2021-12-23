@@ -7,13 +7,19 @@ package di_u05_t;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import modelo.AlumnosDAM;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import org.fxutils.viewer.JasperViewerFX;
 
 /**
  *
@@ -21,19 +27,50 @@ import modelo.AlumnosDAM;
  */
 public class FXMLDocumentController implements Initializable {
     
+    @FXML private VBox panel;
+    ArrayList<AlumnosDAM> a = null;
+    
     @FXML
-    public void mostrarListado(){
+    public void mostrarListado(ActionEvent e){
+        try{
+        JRBeanCollectionDataSource bcds = new JRBeanCollectionDataSource(a);
+        Node source = (Node) e.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        JasperViewerFX viewerfx;
+        viewerfx = new JasperViewerFX (stage, "Gráfico de barras", "/informes/MatriculadosDI.jasper", new HashMap(), bcds);
+        viewerfx.show();
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
         
     }
     
     @FXML
-    public void mostrarGraficoSectores(){
-        
+    public void mostrarGraficoSectores(ActionEvent e){
+        try{
+        JRBeanCollectionDataSource bcds = new JRBeanCollectionDataSource(a);
+        Node source = (Node) e.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        JasperViewerFX viewerfx;
+        viewerfx = new JasperViewerFX (stage, "Gráfico de barras", "/informes/Sectores.jasper", new HashMap(), bcds);
+        viewerfx.show();
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
     }
     
     @FXML
-    public void mostrarGraficoBarras(){
-        
+    public void mostrarGraficoBarras(ActionEvent e){
+        try{
+        JRBeanCollectionDataSource bcds = new JRBeanCollectionDataSource(a);
+        Node source = (Node) e.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        JasperViewerFX viewerfx;
+        viewerfx = new JasperViewerFX (stage, "Gráfico de barras", "/informes/Barras.jasper", new HashMap(), bcds);
+        viewerfx.show();
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
     }
         
     @FXML
@@ -44,9 +81,11 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        ArrayList<AlumnosDAM> a = new ArrayList<AlumnosDAM>();
+        panel.getStylesheets().add("estilos/EstiloBase.css");
+        
+        a = new ArrayList<AlumnosDAM>();
            
-        a.add(new AlumnosDAM("87450923D","DI","Madrid",6.5));
+        a.add(new AlumnosDAM("54212045X","DI","Madrid",6.5));
         a.add(new AlumnosDAM("45509237D","DI","Madrid",7.5));
         a.add(new AlumnosDAM("87650923D","DI","Madrid",8.5));
         a.add(new AlumnosDAM("67890923D","DI","Sevilla",6.5));
@@ -73,7 +112,7 @@ public class FXMLDocumentController implements Initializable {
         a.add(new AlumnosDAM("87450966D","PSP","Madrid",6.5));
         a.add(new AlumnosDAM("55509237D","PSP","Madrid",7.5));
         a.add(new AlumnosDAM("66650923D","PSP","Madrid",8.5));
-             
+            
     }    
     
 }
