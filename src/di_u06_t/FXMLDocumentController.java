@@ -3,8 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package di_u05_t;
+package di_u06_t;
 
+/**
+ * importaciones necesarias para hacer uso de las funcionalidades que las mismas
+ * aportan
+ */
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,19 +22,32 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
 import modelo.AlumnosDAM;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.fxutils.viewer.JasperViewerFX;
 
 /**
- *
+ * Clase controlador de la vista de mismo nombre (FXMLDocument.fxml)
  * @author Cristian
  */
 public class FXMLDocumentController implements Initializable {
     
+    /**
+     * Trae el componente al controlador para poder acceder al mismo
+     */
     @FXML private VBox panel;
+    
+    /**
+     * Declaración de una lista en la cual almacenar en memoria los alumnos
+     */
     ArrayList<AlumnosDAM> a = null;
     
+    /**
+     * Método que muestra el listado de los alumnos matriculados en DAM
+     * @param e recoge el evento generado en la vista
+     */
     @FXML
     public void mostrarListado(ActionEvent e){
         try{
@@ -37,7 +55,8 @@ public class FXMLDocumentController implements Initializable {
         Node source = (Node) e.getSource();
         Stage stage = (Stage) source.getScene().getWindow();
         JasperViewerFX viewerfx;
-        viewerfx = new JasperViewerFX (stage, "Gráfico de barras", "/informes/MatriculadosDI.jasper", new HashMap(), bcds);
+        viewerfx = new JasperViewerFX (stage, "Gráfico de barras", 
+                "/informes/MatriculadosDI.jasper", new HashMap(), bcds);
         viewerfx.show();
         }catch(Exception ex){
             System.out.println(ex.getMessage());
@@ -45,6 +64,11 @@ public class FXMLDocumentController implements Initializable {
         
     }
     
+    /**
+     * Método que muestra un informe con gráfico de sectores, agrupando los 
+     * alumnos por asignatura
+     * @param e recoge el evento generado en la vista
+     */
     @FXML
     public void mostrarGraficoSectores(ActionEvent e){
         try{
@@ -52,13 +76,19 @@ public class FXMLDocumentController implements Initializable {
         Node source = (Node) e.getSource();
         Stage stage = (Stage) source.getScene().getWindow();
         JasperViewerFX viewerfx;
-        viewerfx = new JasperViewerFX (stage, "Gráfico de barras", "/informes/Sectores.jasper", new HashMap(), bcds);
+        viewerfx = new JasperViewerFX (stage, "Gráfico de barras", 
+                "/informes/Sectores.jasper", new HashMap(), bcds);
         viewerfx.show();
         }catch(Exception ex){
             System.out.println(ex.getMessage());
         }
     }
     
+    /**
+     * Método que muestra un informe con gráfico de barras, agrupando los 
+     * alumnos por asignatura
+     * @param e recoge el evento generado en la vista
+     */
     @FXML
     public void mostrarGraficoBarras(ActionEvent e){
         try{
@@ -66,18 +96,29 @@ public class FXMLDocumentController implements Initializable {
         Node source = (Node) e.getSource();
         Stage stage = (Stage) source.getScene().getWindow();
         JasperViewerFX viewerfx;
-        viewerfx = new JasperViewerFX (stage, "Gráfico de barras", "/informes/Barras.jasper", new HashMap(), bcds);
+        viewerfx = new JasperViewerFX (stage, "Gráfico de barras", 
+                "/informes/Barras.jasper", new HashMap(), bcds);
         viewerfx.show();
         }catch(Exception ex){
             System.out.println(ex.getMessage());
         }
     }
-        
+    
+    /**
+     * Método que permite salir de la aplicación
+     */
     @FXML
     public void salir(){
         Platform.exit();
     }
     
+    /**
+     * Método que se ejecuta al inicializar la aplicación
+     * Aplica la hoja de estilos
+     * Instancia la lista de alumnos y carga en ella los alumnos matriculados
+     * @param url direccion guardada en un objeto de tipo URL
+     * @param rb estado previo de la aplicaciçon guardado en un objeto
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
@@ -114,5 +155,26 @@ public class FXMLDocumentController implements Initializable {
         a.add(new AlumnosDAM("66650923D","PSP","Madrid",8.5));
             
     }    
+    
+    /**
+     * Método que permite abrir la ayuda
+     * @param event recoje el evento de la vista
+     */
+    public void abrirAyuda(ActionEvent event) {
+
+        try {
+            
+            File fichero = new File("src\\documentation\\help_set.hs");
+            URL hsURL = fichero.toURI().toURL();
+            HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsURL);
+            HelpBroker hb = helpset.createHelpBroker();
+            hb.setDisplayed(true);
+        
+        } catch (Exception e) {
+
+            System.out.println(e);
+
+        }    
+    }
     
 }

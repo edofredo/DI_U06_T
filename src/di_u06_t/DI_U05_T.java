@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package di_u05_t;
+package di_u06_t;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -22,8 +22,7 @@ public class DI_U05_T extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         
         Scene scene = new Scene(root);
-        
-        
+              
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
@@ -35,6 +34,5 @@ public class DI_U05_T extends Application {
      */
     public static void main(String[] args) {
         launch(args);
-    }
-    
+    }   
 }
