@@ -34,7 +34,7 @@
 				<pieDataset>
 					<keyExpression><![CDATA[$F{modulo}]]></keyExpression>
 					<valueExpression><![CDATA[$V{Modulos_COUNT}]]></valueExpression>
-					<labelExpression><![CDATA[$F{modulo}]]></labelExpression>
+					<labelExpression><![CDATA[$V{Modulos_COUNT}.toString()]]></labelExpression>
 				</pieDataset>
 				<piePlot>
 					<plot/>

@@ -6,7 +6,7 @@
 package di_u06_t;
 
 /**
- * importaciones necesarias para hacer uso de las funcionalidades que las mismas
+ * Importaciones necesarias para hacer uso de las funcionalidades que las mismas
  * aportan
  */
 import java.io.File;
@@ -164,7 +164,9 @@ public class FXMLDocumentController implements Initializable {
 
         try {
             
-            File fichero = new File("src\\documentation\\help_set.hs");
+            File fichero = new File("H:\\AsignaturasDAM\\01_SegundoCurso\\"
+                    + "97_NetBeansWorkspace\\DI_U06_T\\src\\documentacion\\"
+                    + "help_set.hs");
             URL hsURL = fichero.toURI().toURL();
             HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsURL);
             HelpBroker hb = helpset.createHelpBroker();
